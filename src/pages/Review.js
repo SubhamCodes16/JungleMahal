@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Sidebar from "../inc/Sidebar";
-
+import Footer from "../inc/Footer";
+import { NavLink } from "react-router-dom";
 function Review() {
   const [formData, setFormData] = useState({
     name: "",
@@ -53,8 +53,18 @@ function Review() {
 
 
   return (
+    <div>
+      {/* Navigation Bar */}
+                <nav style={{ backgroundColor: '#388e3c', padding: 10, textAlign: 'center' }}>
+                  <NavLink to="/" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Home</NavLink>
+                  <NavLink to="/about" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>About Jungle Mahal</NavLink>
+                  <NavLink to="/thingstodo" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>ThingstoDog</NavLink>
+                  <NavLink to="/booking" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Booking</NavLink>
+                  <NavLink to="/donation" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Donation</NavLink>
+                  <NavLink to="/review" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Review</NavLink>
+                </nav>
     
-    <div style={{ padding: 30, maxWidth: 600, margin: "auto", backgroundColor: "#bbe8bb", borderRadius: 10, boxShadow: "0 0 10px rgba(0,0,0,0.1)" }}>
+    <div style={{ padding: 30, maxWidth: 600, margin: "auto", backgroundColor: "#ffffffff", borderRadius: 10, boxShadow: "0 0 10px rgba(0,0,0,0.1)" }}>
       <h2 style={{ color: "#2e7d32", textAlign: "center" }}>🌟 Share Your Experience</h2>
       <p style={{ textAlign: "center" }}>We value your feedback to help us grow and improve Jungle Mahal Tourism!</p>
 
@@ -115,6 +125,9 @@ function Review() {
         </p>
       )}
     </div>
+    <Footer />
+    </div>
+    
   );
 }
 

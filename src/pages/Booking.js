@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Booking.css';
+import Footer from '../inc/Footer';
+import { NavLink } from "react-router-dom";
 
 const roomPrices = {
   single: 2000,
@@ -89,6 +91,17 @@ const Booking = () => {
   };
 
   return (
+    <div>
+    {/* Navigation Bar */}
+                <nav style={{ backgroundColor: '#388e3c', padding: 10, textAlign: 'center' }}>
+                  <NavLink to="/" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Home</NavLink>
+                  <NavLink to="/about" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>About Jungle Mahal</NavLink>
+                  <NavLink to="/thingstodo" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>ThingstoDog</NavLink>
+                  <NavLink to="/booking" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Booking</NavLink>
+                  <NavLink to="/donation" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Donation</NavLink>
+                  <NavLink to="/review" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Review</NavLink>
+                </nav>
+        
     <div className="container">
       <div className="header">
         <h1>🌿 Junglemahal Tourism</h1>
@@ -280,7 +293,10 @@ const Booking = () => {
           </form>
         </div>
       </div>
+      </div>
+      <Footer />
     </div>
+    
   );
 };
 

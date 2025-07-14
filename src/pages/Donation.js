@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-
+import Footer from "../inc/Footer";
+import { NavLink } from "react-router-dom";
 const Donation = () => {
   const [amount, setAmount] = useState(0);
   const [form, setForm] = useState({
@@ -64,15 +65,15 @@ const Donation = () => {
           padding: 20px;
         }
         .donation-header {
-          background-color: #388e3c;
-          color: white;
+          background-color: #fffffffa;
+          color: black;
           padding: 30px;
           text-align: center;
           border-radius: 8px;
         }
-        .heart-icon {
-          font-size: 2rem;
-          color: #ffc107;
+        // .heart-icon {
+        //   font-size: 2rem;
+        //   color: #ffc107;
         }
         .impact-cards {
           display: flex;
@@ -134,9 +135,17 @@ const Donation = () => {
           width: 100%;
         }
       `}</style>
-
+        <div>{/* Navigation Bar */}
+                <nav style={{ backgroundColor: '#388e3c', padding: 10, textAlign: 'center' }}>
+                  <NavLink to="/" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Home</NavLink>
+                  <NavLink to="/about" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>About Jungle Mahal</NavLink>
+                  <NavLink to="/thingstodo" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>ThingstoDog</NavLink>
+                  <NavLink to="/booking" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Booking</NavLink>
+                  <NavLink to="/donation" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Donation</NavLink>
+                  <NavLink to="/review" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Review</NavLink>
+                </nav></div>
       <header className="donation-header">
-        <i className="fas fa-heart heart-icon" />
+        {/* <i className="fas fa-heart heart-icon" /> */}
         <h1>Support Junglemahal Tourism</h1>
         <p>Help us preserve and promote the natural beauty and cultural heritage of Junglemahal</p>
          <p>for</p>
@@ -234,6 +243,7 @@ const Donation = () => {
           </form>
         </section>
       </main>
+      <Footer />
     </div>
   );
 };

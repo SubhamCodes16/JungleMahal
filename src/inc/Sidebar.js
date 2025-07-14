@@ -27,23 +27,30 @@ function Sidebar(){
         <NavLink className="nav-link" to="/thingstodo">
           <i className="fas fa-fw fa-chart-area" />
           <span>Things to Do</span></NavLink>
+           {/* Nav Item - Booking page */}
+      <li className="nav-item">
+        <NavLink className="nav-link" to="/booking">
+          <i className="fas fa-fw fa-chart-area" />
+          <span>Booking</span></NavLink>
+           {/* Nav Item - Donation page */}
+      <li className="nav-item">
+        <NavLink className="nav-link" to="/donation">
+          <i className="fas fa-fw fa-chart-area" />
+          <span>Donation</span></NavLink>
+
             {/* Nav Item - Review page */}
       <li className="nav-item">
         <NavLink className="nav-link" to="/review">
           <i className="fas fa-fw fa-chart-area" />
           <span>Review</span></NavLink>
-            {/* Nav Item - Booking page */}
-      <li className="nav-item">
-        <NavLink className="nav-link" to="/booking">
-          <i className="fas fa-fw fa-chart-area" />
-          <span>Booking</span></NavLink>
-
+           
 
      </li>
       </li>
       </li>
       </li>
       </li>
+       </li>
      
       
       

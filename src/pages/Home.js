@@ -40,15 +40,15 @@ function Home() {
                 </header>
 
                 {/* Navigation Bar */}
-                <nav style={{ backgroundColor: '#388e3c', padding: 10, textAlign: 'center' }}>
-                  <NavLink to="/" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Home</NavLink>
-                   <NavLink to="/thingstodo" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>ThingstoDog</NavLink>
-                  <NavLink to="/about" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>About Jungle Mahal</NavLink>
-                  <NavLink to="/booking" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Booking</NavLink>
-                  <NavLink to="/review" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Review</NavLink>
-                  <NavLink to="/donation" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Donation</NavLink>
-                  <NavLink to="#" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Contact</NavLink>
-                </nav>
+                                <nav style={{ backgroundColor: '#388e3c', padding: 10, textAlign: 'center' }}>
+                                  <NavLink to="/" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Home</NavLink>
+                                  <NavLink to="/about" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>About Jungle Mahal</NavLink>
+                                  <NavLink to="/thingstodo" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>ThingstoDog</NavLink>
+                                  <NavLink to="/booking" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Booking</NavLink>
+                                  <NavLink to="/donation" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Donation</NavLink>
+                                  <NavLink to="/review" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Review</NavLink>
+                                </nav>
+                
 
                 {/* Hero Section */}
                 <section style={{ padding: 30, textAlign: 'center' }}>
@@ -100,10 +100,8 @@ function Home() {
                   </ul>
                 </section>
 
-                {/* Footer */}
-                <footer style={{ backgroundColor: '#2e7d32', color: 'white', textAlign: 'center', padding: 15, marginTop: 20 }}>
-                  <p>© 2025 Jungle Mahal Tourism Development Project | All rights reserved.</p>
-                </footer>
+               
+                
               </div>
               {/* End of Jungle Mahal Content */}
             </div>
