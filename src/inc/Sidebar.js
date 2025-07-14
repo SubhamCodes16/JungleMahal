@@ -8,28 +8,40 @@ function Sidebar(){
         <div className="sidebar-brand-icon rotate-n-15">
           <i className="fas fa-laugh-wink" />
         </div>
-        <div className="sidebar-brand-text mx-3"><sup>2</sup></div>
+        <div className="sidebar-brand-text mx-3"><sup></sup></div>
       </a>
       {/* Divider */}
       <hr className="sidebar-divider my-0" />
       {/* Nav Item - Dashboard */}
       <li className="nav-item">
-        <a className="nav-link" href="/">
+        <NavLink className="nav-link" to="/">
           <i className="fas fa-fw fa-tachometer-alt" />
-          <span>Home</span></a>
+          <span>Home</span></NavLink>
            {/* Nav Item - About Jungle Mahal */}
       <li className="nav-item">
-        <a className="nav-link" href="/about">
+        <NavLink className="nav-link" to="/about">
           <i className="fas fa-fw fa-chart-area" />
-          <span>About Jungle Mahal</span></a>
+          <span>About Jungle Mahal</span></NavLink>
+            {/* Nav Item - ThingstoDo */}
+      <li className="nav-item">
+        <NavLink className="nav-link" to="/thingstodo">
+          <i className="fas fa-fw fa-chart-area" />
+          <span>Things to Do</span></NavLink>
+            {/* Nav Item - Review page */}
+      <li className="nav-item">
+        <NavLink className="nav-link" to="/review">
+          <i className="fas fa-fw fa-chart-area" />
+          <span>Review</span></NavLink>
             {/* Nav Item - Booking page */}
       <li className="nav-item">
-        <a className="nav-link" href="/booking">
+        <NavLink className="nav-link" to="/booking">
           <i className="fas fa-fw fa-chart-area" />
-          <span>Booking</span></a>
+          <span>Booking</span></NavLink>
 
 
      </li>
+      </li>
+      </li>
       </li>
       </li>
      
