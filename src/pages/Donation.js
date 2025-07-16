@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Footer from "../inc/Footer";
 import { NavLink } from "react-router-dom";
+
 const Donation = () => {
   const [amount, setAmount] = useState(0);
   const [form, setForm] = useState({
@@ -10,6 +11,7 @@ const Donation = () => {
     email: "",
     phone: "",
   });
+  const [submitted, setSubmitted] = useState(false); // ✅
 
   const quickAmounts = [50, 100, 250, 500, 1000, 2500];
 
@@ -34,7 +36,7 @@ const Donation = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          paymentId: "manual_donation", // since there's no payment gateway
+          paymentId: "manual_donation",
           amount,
           donor: form,
         }),
@@ -42,7 +44,7 @@ const Donation = () => {
 
       const data = await res.json();
       if (res.ok) {
-        alert("✅ Thank you! Your donation has been recorded.");
+        setSubmitted(true); // ✅ Show thank-you message
         setAmount(0);
         setForm({ firstName: "", lastName: "", email: "", phone: "" });
       } else {
@@ -70,10 +72,6 @@ const Donation = () => {
           padding: 30px;
           text-align: center;
           border-radius: 8px;
-        }
-        // .heart-icon {
-        //   font-size: 2rem;
-        //   color: #ffc107;
         }
         .impact-cards {
           display: flex;
@@ -135,36 +133,32 @@ const Donation = () => {
           width: 100%;
         }
       `}</style>
-        <div>{/* Navigation Bar */}
-                <nav style={{ backgroundColor: '#388e3c', padding: 10, textAlign: 'center' }}>
-                  <NavLink to="/" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Home</NavLink>
-                  <NavLink to="/about" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>About Jungle Mahal</NavLink>
-                  <NavLink to="/thingstodo" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>ThingstoDog</NavLink>
-                  <NavLink to="/booking" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Booking</NavLink>
-                  <NavLink to="/donation" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Donation</NavLink>
-                  <NavLink to="/review" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Review</NavLink>
-                </nav></div>
+
+      <nav style={{ backgroundColor: '#388e3c', padding: 10, textAlign: 'center' }}>
+        <NavLink to="/" style={navStyle}>Home</NavLink>
+        <NavLink to="/about" style={navStyle}>About Jungle Mahal</NavLink>
+        <NavLink to="/thingstodo" style={navStyle}>ThingstoDo</NavLink>
+        <NavLink to="/booking" style={navStyle}>Booking</NavLink>
+        <NavLink to="/donation" style={navStyle}>Donation</NavLink>
+        <NavLink to="/review" style={navStyle}>Review</NavLink>
+      </nav>
+
       <header className="donation-header">
-        {/* <i className="fas fa-heart heart-icon" /> */}
         <h1>Support Junglemahal Tourism</h1>
         <p>Help us preserve and promote the natural beauty and cultural heritage of Junglemahal</p>
-         <p>for</p>
       </header>
 
       <main>
-       <div className="impact-cards">
+        <div className="impact-cards">
           <div className="impact-card">
-            <i className="fas fa-tree" />
             <h3>Conservation</h3>
             <p>Protect nature and wildlife</p>
           </div>
           <div className="impact-card">
-            <i className="fas fa-users" />
             <h3>Community</h3>
             <p>Support local livelihoods</p>
           </div>
           <div className="impact-card">
-            <i className="fas fa-camera" />
             <h3>Heritage</h3>
             <p>Preserve cultural beauty</p>
           </div>
@@ -184,9 +178,6 @@ const Donation = () => {
                 min={50}
                 required
               />
-              <small>
-                <i className="fas fa-info-circle" /> Minimum donation amount is ₹50
-              </small>
             </div>
 
             <div className="amount-buttons">
@@ -241,11 +232,23 @@ const Donation = () => {
               <i className="fas fa-heart" /> Donate ₹{amount || 0} Now
             </button>
           </form>
+
+          {submitted && (
+            <p style={{ marginTop: 20, color: "green", textAlign: "center" }}>
+              ✅ Thank you for your generous donation!
+            </p>
+          )}
         </section>
       </main>
       <Footer />
     </div>
   );
+};
+
+const navStyle = {
+  color: 'white',
+  textDecoration: 'none',
+  margin: '0 15px'
 };
 
 export default Donation;

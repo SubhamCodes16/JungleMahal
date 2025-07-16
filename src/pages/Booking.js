@@ -20,14 +20,14 @@ const Booking = () => {
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
   const [meals, setMeals] = useState([]);
-  const [nights, setNights] = useState(1); // NEW: number of nights
+  const [nights, setNights] = useState(1);
   const [total, setTotal] = useState(0);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [agreed, setAgreed] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
-  // Calculate total dynamically
   useEffect(() => {
     const guests = adults + children;
     const roomCost = roomPrices[roomType] * nights;
@@ -65,9 +65,9 @@ const Booking = () => {
       adults,
       children,
       meals,
-      nights, 
+      nights,
       total,
-      bookingTime: new Date().toISOString(), 
+      bookingTime: new Date().toISOString(),
     };
 
     try {
@@ -77,12 +77,17 @@ const Booking = () => {
         body: JSON.stringify(bookingData),
       });
 
-      const result = await res.json();
-
       if (res.ok) {
-        alert('Booking saved successfully!');
-      } else {
-        alert('Error: ' + result.message);
+        setSubmitted(true);
+        setName('');
+        setEmail('');
+        setPhone('');
+        setAdults(1);
+        setChildren(0);
+        setMeals([]);
+        setNights(1);
+        setRoomType('single');
+        setAgreed(false);
       }
     } catch (err) {
       console.error('Submission error:', err);
@@ -92,212 +97,133 @@ const Booking = () => {
 
   return (
     <div>
-    {/* Navigation Bar */}
-                <nav style={{ backgroundColor: '#388e3c', padding: 10, textAlign: 'center' }}>
-                  <NavLink to="/" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Home</NavLink>
-                  <NavLink to="/about" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>About Jungle Mahal</NavLink>
-                  <NavLink to="/thingstodo" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>ThingstoDog</NavLink>
-                  <NavLink to="/booking" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Booking</NavLink>
-                  <NavLink to="/donation" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Donation</NavLink>
-                  <NavLink to="/review" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Review</NavLink>
-                </nav>
-        
-    <div className="container">
-      <div className="header">
-        <h1>🌿 Junglemahal Tourism</h1>
-        <p>Book Your Stay & Complete Your Payment</p>
-      </div>
+      {/* Navigation */}
+      <nav style={{ backgroundColor: '#388e3c', padding: 10, textAlign: 'center' }}>
+        <NavLink to="/" style={navStyle}>Home</NavLink>
+        <NavLink to="/about" style={navStyle}>About Jungle Mahal</NavLink>
+        <NavLink to="/thingstodo" style={navStyle}>ThingstoDog</NavLink>
+        <NavLink to="/booking" style={navStyle}>Booking</NavLink>
+        <NavLink to="/donation" style={navStyle}>Donation</NavLink>
+        <NavLink to="/review" style={navStyle}>Review</NavLink>
+      </nav>
 
-      <div className="payment-content">
-        {/* Booking Form */}
-        <div className="booking-summary">
-          <h2 className="section-title">Booking Form</h2>
-          <form>
-            <div className="form-group">
-              <label htmlFor="roomType">Room Type:</label>
-              <select
-                id="roomType"
-                value={roomType}
-                onChange={(e) => setRoomType(e.target.value)}
-              >
-                <option value="single">Deluxe - ₹2000</option>
-                <option value="double">Super Deluxe - ₹3000</option>
-                <option value="suite">Suite - ₹5000</option>
-              </select>
-            </div>
+      <div className="container">
+        <div className="header">
+          <h1>🌿 Junglemahal Tourism</h1>
+          <p>Book Your Stay & Complete Your Payment</p>
+        </div>
 
-            <div className="form-group">
-              <label htmlFor="adults">Number of Adults:</label>
-              <input
-                type="number"
-                id="adults"
-                value={adults}
-                min="1"
-                max="10"
-                onChange={(e) => setAdults(parseInt(e.target.value))}
-              />
-            </div>
+        {submitted ? (
+          <p style={{ textAlign: "center", color: "green", fontWeight: "bold", fontSize: "1.2rem" }}>
+            ✅ Thank you for your booking!
+          </p>
+        ) : (
+          <div className="payment-content">
+            {/* Booking Form */}
+            <div className="booking-summary">
+              <h2 className="section-title">Booking Form</h2>
+              <form>
+                <div className="form-group">
+                  <label>Room Type:</label>
+                  <select value={roomType} onChange={(e) => setRoomType(e.target.value)}>
+                    <option value="single">Deluxe - ₹2000</option>
+                    <option value="double">Super Deluxe - ₹3000</option>
+                    <option value="suite">Suite - ₹5000</option>
+                  </select>
+                </div>
 
-            <div className="form-group">
-              <label htmlFor="children">Number of Children:</label>
-              <input
-                type="number"
-                id="children"
-                value={children}
-                min="0"
-                max="10"
-                onChange={(e) => setChildren(parseInt(e.target.value))}
-              />
-            </div>
+                <div className="form-group">
+                  <label>Number of Adults:</label>
+                  <input type="number" value={adults} min="1" max="10" onChange={(e) => setAdults(parseInt(e.target.value))} />
+                </div>
 
-            <div className="form-group">
-              <label htmlFor="nights">Number of Nights:</label>
-              <input
-                type="number"
-                id="nights"
-                value={nights}
-                min="1"
-                max="30"
-                onChange={(e) => setNights(parseInt(e.target.value))}
-              />
-            </div>
+                <div className="form-group">
+                  <label>Number of Children:</label>
+                  <input type="number" value={children} min="0" max="10" onChange={(e) => setChildren(parseInt(e.target.value))} />
+                </div>
 
-            <div className="form-group">
-              <label>Meals Included (per person per day):</label>
-              <div className="meal-options">
-                <label>
-                  <input
-                    type="checkbox"
-                    value="breakfast"
-                    onChange={handleMealChange}
-                  />
-                  Breakfast (₹300)
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    value="lunch"
-                    onChange={handleMealChange}
-                  />
-                  Lunch (₹500)
-                </label>
-                <label>
-                  <input
-                    type="checkbox"
-                    value="dinner"
-                    onChange={handleMealChange}
-                  />
-                  Dinner (₹700)
-                </label>
+                <div className="form-group">
+                  <label>Number of Nights:</label>
+                  <input type="number" value={nights} min="1" max="30" onChange={(e) => setNights(parseInt(e.target.value))} />
+                </div>
+
+                <div className="form-group">
+                  <label>Meals Included (per person per day):</label>
+                  <div className="meal-options">
+                    {Object.keys(mealPrices).map((meal) => (
+                      <label key={meal}>
+                        <input type="checkbox" value={meal} onChange={handleMealChange} />
+                        {meal.charAt(0).toUpperCase() + meal.slice(1)} (₹{mealPrices[meal]})
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              </form>
+
+              {/* Booking Summary */}
+              <div className="price-breakdown">
+                <h3>Total</h3>
+                <div className="price-item">
+                  <span>Room ({roomType} × {nights} night{nights > 1 ? 's' : ''})</span>
+                  <span>₹{roomPrices[roomType] * nights}</span>
+                </div>
+                <div className="price-item">
+                  <span>Meals ({meals.join(', ') || 'None'})</span>
+                  <span>
+                    ₹{meals.reduce((sum, meal) =>
+                      sum + mealPrices[meal] * (adults + children) * nights, 0)}
+                  </span>
+                </div>
+                <div className="price-item"><span>Transportation</span><span>₹2000</span></div>
+                <div className="price-item">
+                  <span>GST (18%)</span>
+                  <span>₹{(0.18 * (roomPrices[roomType] * nights +
+                    meals.reduce((sum, meal) => sum + mealPrices[meal] * (adults + children) * nights, 0) + 2000)).toFixed(2)}</span>
+                </div>
+                <div className="price-item"><strong>Total</strong><strong>₹{total}</strong></div>
               </div>
             </div>
-          </form>
 
-          {/* Booking Summary */}
-          <div className="price-breakdown">
-            <h3>Total</h3>
-            <div className="price-item">
-              <span>
-                Room ({roomType} × {nights} night{nights > 1 ? 's' : ''})
-              </span>
-              <span>₹{roomPrices[roomType] * nights}</span>
-            </div>
-            <div className="price-item">
-              <span>Meals ({meals.join(', ') || 'None'})</span>
-              <span>
-                ₹
-                {meals.reduce(
-                  (sum, meal) =>
-                    sum + mealPrices[meal] * (adults + children) * nights,
-                  0
-                )}
-              </span>
-            </div>
-            <div className="price-item">
-              <span>Transportation</span>
-              <span>₹2000</span>
-            </div>
-            <div className="price-item">
-              <span>GST (18%)</span>
-              <span>
-                ₹
-                {(
-                  0.18 *
-                  (roomPrices[roomType] * nights +
-                    meals.reduce(
-                      (sum, meal) =>
-                        sum + mealPrices[meal] * (adults + children) * nights,
-                      0
-                    ) +
-                    2000)
-                ).toFixed(2)}
-              </span>
-            </div>
-            <div className="price-item">
-              <strong>Total</strong>
-              <strong>₹{total}</strong>
+            {/* Payment Form */}
+            <div className="payment-form">
+              <h2 className="section-title">Payment Details</h2>
+              <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <label>Full Name *</label>
+                  <input type="text" required value={name} onChange={(e) => setName(e.target.value)} />
+                </div>
+
+                <div className="form-row">
+                  <div className="form-group">
+                    <label>Email *</label>
+                    <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
+                  </div>
+                  <div className="form-group">
+                    <label>Phone *</label>
+                    <input type="tel" required value={phone} onChange={(e) => setPhone(e.target.value)} />
+                  </div>
+                </div>
+
+                <div className="form-group checkbox-group">
+                  <input type="checkbox" required checked={agreed} onChange={(e) => setAgreed(e.target.checked)} />
+                  <label>I agree to the <a href="#">Terms and Conditions</a></label>
+                </div>
+
+                <button type="submit" className="pay-button">Pay ₹{total} Now</button>
+              </form>
             </div>
           </div>
-        </div>
-
-        {/* Payment Form */}
-        <div className="payment-form">
-          <h2 className="section-title">Payment Details</h2>
-          <form onSubmit={handleSubmit}>
-            <div className="form-group">
-              <label>Full Name *</label>
-              <input
-                type="text"
-                required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-
-            <div className="form-row">
-              <div className="form-group">
-                <label>Email *</label>
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-              <div className="form-group">
-                <label>Phone *</label>
-                <input
-                  type="tel"
-                  required
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div className="form-group checkbox-group">
-              <input
-                type="checkbox"
-                required
-                checked={agreed}
-                onChange={(e) => setAgreed(e.target.checked)}
-              />
-              <label>
-                I agree to the <a href="#">Terms and Conditions</a>
-              </label>
-            </div>
-
-            <button type="submit" className="pay-button">
-              Pay ₹{total} Now
-            </button>
-          </form>
-        </div>
-      </div>
+        )}
       </div>
       <Footer />
     </div>
-    
   );
+};
+
+const navStyle = {
+  color: 'white',
+  textDecoration: 'none',
+  margin: '0 15px'
 };
 
 export default Booking;
