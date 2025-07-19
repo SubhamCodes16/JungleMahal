@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { NavLink } from 'react-router-dom';
+import Navbar from './Navbar';
 import Footer from '../inc/Footer';
 const AboutJungleMahal = () => {
   const [openSection, setOpenSection] = useState(null);
@@ -12,14 +12,7 @@ const AboutJungleMahal = () => {
   return (
     <div style={{ fontFamily: 'Century Schoolbook, sans-serif', backgroundColor: '#bbe8bb', padding: '30px' }}>
      {/* Navigation Bar */}
-                <nav style={{ backgroundColor: '#388e3c', padding: 10, textAlign: 'center' }}>
-                  <NavLink to="/" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Home</NavLink>
-                  <NavLink to="/about" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>About Jungle Mahal</NavLink>
-                  <NavLink to="/thingstodo" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>ThingstoDog</NavLink>
-                  <NavLink to="/booking" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Booking</NavLink>
-                  <NavLink to="/donation" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Donation</NavLink>
-                  <NavLink to="/review" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Review</NavLink>
-                </nav>
+               <Navbar/>
 
 
       {/* About Section */}

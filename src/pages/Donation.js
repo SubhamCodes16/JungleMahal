@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Footer from "../inc/Footer";
-import { NavLink } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const Donation = () => {
   const [amount, setAmount] = useState(0);
@@ -134,14 +134,7 @@ const Donation = () => {
         }
       `}</style>
 
-      <nav style={{ backgroundColor: '#388e3c', padding: 10, textAlign: 'center' }}>
-        <NavLink to="/" style={navStyle}>Home</NavLink>
-        <NavLink to="/about" style={navStyle}>About Jungle Mahal</NavLink>
-        <NavLink to="/thingstodo" style={navStyle}>ThingstoDo</NavLink>
-        <NavLink to="/booking" style={navStyle}>Booking</NavLink>
-        <NavLink to="/donation" style={navStyle}>Donation</NavLink>
-        <NavLink to="/review" style={navStyle}>Review</NavLink>
-      </nav>
+      <Navbar/>
 
       <header className="donation-header">
         <h1>Support Junglemahal Tourism</h1>

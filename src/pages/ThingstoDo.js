@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Footer from '../inc/Footer';
-import { NavLink } from "react-router-dom";
+import Navbar from './Navbar';
 
 function ThingstoDo() {
   const [openSection, setOpenSection] = useState(null);
@@ -24,14 +24,7 @@ function ThingstoDo() {
   return (
     <div style={{ fontFamily: 'Century Schoolbook, sans-serif', backgroundColor: '#bbe8bb', padding: '20px' }}>
       {/* Navigation Bar */}
-                <nav style={{ backgroundColor: '#388e3c', padding: 10, textAlign: 'center' }}>
-                  <NavLink to="/" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Home</NavLink>
-                  <NavLink to="/about" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>About Jungle Mahal</NavLink>
-                  <NavLink to="/thingstodo" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>ThingstoDog</NavLink>
-                  <NavLink to="/booking" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Booking</NavLink>
-                  <NavLink to="/donation" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Donation</NavLink>
-                  <NavLink to="/review" style={{ color: 'white', textDecoration: 'none', margin: '0 15px' }}>Review</NavLink>
-                </nav>
+                <Navbar/>
       {/* Things to Do - Collapsible */}
       <h2 style={{ textAlign: 'center', marginTop: '40px', color: '#2e7d32' }}>🌿 Things to Do in Jungle Mahal</h2>
 

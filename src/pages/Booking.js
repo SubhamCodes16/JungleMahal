@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Booking.css';
 import Footer from '../inc/Footer';
-import { NavLink } from "react-router-dom";
+import Navbar from './Navbar';
 
 const roomPrices = {
   single: 2000,
@@ -98,14 +98,7 @@ const Booking = () => {
   return (
     <div>
       {/* Navigation */}
-      <nav style={{ backgroundColor: '#388e3c', padding: 10, textAlign: 'center' }}>
-        <NavLink to="/" style={navStyle}>Home</NavLink>
-        <NavLink to="/about" style={navStyle}>About Jungle Mahal</NavLink>
-        <NavLink to="/thingstodo" style={navStyle}>ThingstoDog</NavLink>
-        <NavLink to="/booking" style={navStyle}>Booking</NavLink>
-        <NavLink to="/donation" style={navStyle}>Donation</NavLink>
-        <NavLink to="/review" style={navStyle}>Review</NavLink>
-      </nav>
+     <Navbar/>
 
       <div className="container">
         <div className="header">
